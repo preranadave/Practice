@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title>Shopify Ecommerce Development Cheat Sheet</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #ffffff;
+            --sidebar: #f8f9fb;
+            --border: #e5e7eb;
+            --text: #111827;
+            --muted: #6b7280;
+            --primary: #5c6ac4;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --sidebar: #111827;
+            --border: #374151;
+            --text: #f9fafb;
+            --muted: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .docs-layout {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            overflow: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: var(--sidebar);
+            border-right: 1px solid var(--border);
+            padding: 30px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .content {
+            margin-left: 300px;
+            padding: 60px;
+            max-width: 1200px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        pre {
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .search {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .copy-btn {
+            float: right;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .dark-toggle {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        @media(max-width:991px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: .3s;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            padding: 10px 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <button class="mobile-menu">
+        ☰ Menu
+    </button>
+
+    <div class="docs-layout">
+
+        <aside class="sidebar">
+
+            <h2>Shopify Cheat Sheet</h2>
+
+            <input type="text" id="searchInput" class="search" placeholder="Search...">
+
+            <ul id="navList">
+
+                <li><a href="#structure">Ecommerce Structure</a></li>
+                <li><a href="#boilerplate">Section Boilerplate</a></li>
+                <li><a href="#hero">Hero Section</a></li>
+                <li><a href="#schema">Settings Schema</a></li>
+                <li><a href="#blocks">Blocks Reference</a></li>
+                <li><a href="#css">Dynamic CSS</a></li>
+                <li><a href="#snippets">Liquid Snippets</a></li>
+                <li><a href="#typography">Typography</a></li>
+                <li><a href="#buttons">Buttons</a></li>
+                <li><a href="#html">Custom HTML</a></li>
+                <li><a href="#metaobjects">Metaobjects</a></li>
+                <li><a href="#product">Product Template</a></li>
+                <li><a href="#collection">Collection Template</a></li>
+                <li><a href="#objects">Global Objects</a></li>
+                <li><a href="#checklist">Homepage Checklist</a></li>
+
+            </ul>
+
+            <button class="dark-toggle">
+                Toggle Dark Mode
+            </button>
+
+        </aside>
+
+        <main class="content">
+
+            <section class="section" id="structure">
+
+                <h2>1. Ecommerce Website Structure</h2>
+
+                <pre><code class="language-markup">
+HomePage
+├── Announcement Bar
+├── Header
+├── Hero Banner
+├── Featured Collection
+├── Product Showcase
+├── Features
+├── USP
+├── Testimonials
+├── FAQ
+├── CTA
+└── Footer
+</code></pre>
+
+            </section>
+
+            <section class="section" id="boilerplate">
+
+                <h2>2. Shopify Section Boilerplate</h2>
+
+                <pre><code class="language-liquid">
+<div id="shopify-section-{{ section.id }}">
+  ...
+</div>
+
+{% schema %}
+{
+  "name":"Custom Section"
+}
+{% endschema %}
+</code></pre>
+
+            </section>
+
+            <section class="section" id="hero">
+
+                <h2>3. Hero Section</h2>
+
+                <pre><code class="language-liquid">
+<section class="hero">
+
+<h1>{{ section.settings.heading }}</h1>
+
+<a href="{{ section.settings.button_link }}">
+  {{ section.settings.button_text }}
+</a>
+
+</section>
+</code></pre>
+
+            </section>
+
+            <section class="section" id="schema">
+                <h2>4. Settings Schema</h2>
+
+                <pre><code class="language-json">
+{
+  "type":"text",
+  "id":"heading",
+  "label":"Heading"
+}
+</code></pre>
+
+            </section>
+
+            <section class="section" id="blocks">
+                <h2>5. Blocks Reference</h2>
+                <p>Add all block examples here.</p>
+            </section>
+
+            <section class="section" id="css">
+                <h2>6. Dynamic CSS</h2>
+                <p>Add dynamic section CSS examples.</p>
+            </section>
+
+            <section class="section" id="snippets">
+                <h2>7. Liquid Snippets</h2>
+                <p>Responsive image, button, video, money snippets.</p>
+            </section>
+
+            <section class="section" id="typography">
+                <h2>8. Typography</h2>
+            </section>
+
+            <section class="section" id="buttons">
+                <h2>9. Button System</h2>
+            </section>
+
+            <section class="section" id="html">
+                <h2>10. Custom HTML</h2>
+            </section>
+
+            <section class="section" id="metaobjects">
+                <h2>11. Metaobjects</h2>
+            </section>
+
+            <section class="section" id="product">
+                <h2>12. Product Template</h2>
+            </section>
+
+            <section class="section" id="collection">
+                <h2>13. Collection Template</h2>
+            </section>
+
+            <section class="section" id="objects">
+                <h2>14. Global Shopify Objects</h2>
+            </section>
+
+            <section class="section" id="checklist">
+                <h2>15. Homepage Checklist</h2>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+
+    <script>
+
+        document.querySelector('.dark-toggle')
+            .addEventListener('click', () => {
+
+                document.documentElement.toggleAttribute(
+                    'data-theme',
+                    'dark'
+                );
+
+            });
+
+        document.querySelector('.mobile-menu')
+            .addEventListener('click', () => {
+
+                document.querySelector('.sidebar')
+                    .classList.toggle('active');
+
+            });
+
+        const searchInput =
+            document.getElementById('searchInput');
+
+        searchInput.addEventListener('keyup', function () {
+
+            const value =
+                this.value.toLowerCase();
+
+            document.querySelectorAll('#navList li')
+                .forEach(item => {
+
+                    item.style.display =
+                        item.textContent.toLowerCase().includes(value)
+                            ? 'block'
+                            : 'none';
+
+                });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .img-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: fit-content;
+            background-color: #000;
+            -webkit-mask-image: url("../images/flower-sticker-mask.png");
+            mask-image: url("../images/flower-sticker-mask.png");
+
+            mask-size: cover;
+            -webkit-mask-size: cover;
+
+            mask-position: center;
+            -webkit-mask-position: center;
+
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+        }
+
+
+        .sheen:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            bottom: -50%;
+            left: -50%;
+            background: linear-gradient(to bottom, rgba(229, 172, 142, 0), rgba(255, 255, 255, 0.9) 50%, rgba(229, 172, 142, 0));
+            transform: rotateZ(60deg) translate(-5em, 7.5em);
+        }
+
+        .sheen:hover::after {
+            animation: sheen 1s forwards;
+        }
+
+        @keyframes sheen {
+            100% {
+                transform: rotateZ(60deg) translate(1em, -9em);
+            }
+        }
+
+        /* button wipe effect end */
+    </style>
+</head>
+
+<body>
+
+    <!-- button wipe effect strat -->
+    <h1>CSS Buttons</h1>
+    <div class="img-wrapper sheen"><img src="images/flower-sticker.png" alt="" srcset="" /></div>
+
+    <!--button wipe effect end  -->
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>HTML5 Canvas - rect()</h1>
+
+    <canvas id="myCanvas" width="300" height="150" style="border:1px solid black">
+        Sorry, your browser does not support canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // ctx.beginPath();
+        // ctx.lineWidth = "6";
+        // ctx.strokeStyle = "red";
+        // ctx.rect(5, 5, 290, 140);
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.lineWidth = "4";
+        // ctx.strokeStyle = "green";
+        // ctx.rect(30, 30, 50, 50);
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.lineWidth = "10";
+        // ctx.strokeStyle = "blue";
+        // ctx.rect(50, 50, 150, 80);
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.strokeRect(10,10, 150,100);
+
+        // ctx.strokeRect(10, 10, 150, 100)
+        // ctx.clearRect(60,60,100,100)
+
+        // ctx.beginPath();
+        // ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+        // ctx.fillStyle = "red";
+        // ctx.fill();
+        // ctx.lineWidth = 4;
+        // ctx.strokeStyle = "blue";
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.arc(95, 50, 40, 0, 0.5 * Math.PI);
+        // ctx.stroke();
+
+
+        // Create linear gradient
+        // const grad = ctx.createLinearGradient(0, 0, 280, 0);
+        // grad.addColorStop(0, "lightblue");
+        // grad.addColorStop(1, "darkblue");
+
+        // ctx.fillStyle = grad;
+        // ctx.fillRect(10, 10, 280, 130);
+
+
+        // Create linear gradient
+        // const grad = ctx.createLinearGradient(0, 0, 280, 130);
+        // grad.addColorStop(0, "lightblue");
+        // grad.addColorStop(1, "darkblue");
+        // ctx.fillStyle = grad;
+        // ctx.fillRect(10, 10, 280, 130);
+        const grad = ctx.createLinearGradient(0, 0, 280, 130);
+        grad.addColorStop(0, "lightblue");
+        grad.addColorStop(1, "darkblue");
+
+        ctx.font = "50px Arial";
+        // ctx.strokeText("Hello World", 10, 80);
+        // ctx.fillStyle = grad;
+        ctx.strokeStyle = grad;
+        ctx.strokeText("Hello World", 10, 80);
+
+        //ctx.fillText("Hello World",10,80)
+
+        ctx.rotate((Math.PI / 180) * 20);
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(50, 10, 100, 50);
+
+        ctx.strokeStyle = "blue";
+        ctx.strokeRect(70, 30, 100, 50);
+
+    </script>
+
+</body>
+
+</html>

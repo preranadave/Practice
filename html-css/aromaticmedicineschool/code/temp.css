@@ -1,0 +1,1385 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900; 1,100..900&family=Playfair+Display:ital,wght@0,400..900; 1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
+
+/*  font-family: "Montserrat", sans-serif; font-family: "Playfair Display", serif;   font-family: "Gloock", serif;*/
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body defaults */
+body {
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    font-family: "Montserrat", sans-serif;
+    color: #222;
+    background-color: #fff;
+}
+
+/* Headings & paragraphs */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    font-weight: inherit;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Images */
+img,
+picture,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Lists */
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Form elements inherit font styles */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+.container {
+    max-width: 1640px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn {
+    border-radius: 50px;
+}
+
+.header {
+    max-width: 1780px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.header .logo {
+    max-width: 308.5px;
+    width: 100%;
+    height: auto;
+    margin-bottom: -74px;
+    position: relative;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="309" height="55" viewBox="0 0 309 55" fill="none"><path d="M0.5 0H309C305.379 0.418419 302.809 0.983652 299.871 1.51952C283.919 4.4558 270.134 11.8405 256.459 20.1135C243.188 28.1442 230.395 36.9457 216.154 43.3688C194.746 53.0291 172.478 56.5674 149.035 54.3725C136.308 53.176 124.241 49.9901 112.439 45.4389C94.4161 38.4872 78.4497 27.7331 61.58 18.6527C48.4926 11.613 35.306 5.14999 20.5 2.5C15.4031 1.58975 7.5 0 0.5 0Z" fill="%23FFFFFF" /></svg>');
+    background-size: auto 55px;
+    background-position: calc(50% - 10px) calc(100% - 6px);
+    background-repeat: no-repeat;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* .header .logo::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translate(-53%, 20px); background-image: url('data:image/svg+xml,<svg width="309" height="55" viewBox="0 0 309 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 0H309C305.379 0.418419 302.809 0.983652 299.871 1.51952C283.919 4.4558 270.134 11.8405 256.459 20.1135C243.188 28.1442 230.395 36.9457 216.154 43.3688C194.746 53.0291 172.478 56.5674 149.035 54.3725C136.308 53.176 124.241 49.9901 112.439 45.4389C94.4161 38.4872 78.4497 27.7331 61.58 18.6527C48.4926 11.613 35.306 5.14999 20.5 2.5C15.4031 1.58975 7.5 0 0.5 0Z" fill="%23FFFAF3"/></svg>'); max-width: 308.5px; width: 308.5px; height: 55px; background-repeat: no-repeat; background-position: center; background-size: cover; z-index: -1; }
+*/
+.header .logo img {
+    max-width: 131px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 163px;
+}
+
+.header .nav ul {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+}
+
+.header .nav li {}
+
+.header .nav li a {
+    color: var(--Black, #000);
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.header .nav li a:focus {
+    color: #758E79;
+}
+
+.header .nav li a:active {
+    color: #758E79;
+}
+
+.header .nav a span {
+    position: relative;
+}
+
+.header .nav a span::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background: #758E79;
+    transition: all 0.3s ease;
+    bottom: -5px;
+}
+
+.header .nav a:hover span {
+    color: #758E79;
+}
+
+.header .nav a:hover span::before {
+    width: 100%;
+}
+
+.header .nav a:active span::before {
+    width: 100%;
+}
+
+.header .nav a:focus span::before {
+    width: 100%;
+}
+
+.header .header-cta {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.header .header-cta.mobile {
+    display: none;
+}
+
+.header .social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.header .social-icons .social-icon {
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    border-radius: 100%;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    background-color: #D9D9D9;
+}
+
+.header .social-icons .social-icon::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    /* combine translate + scale */
+    z-index: -1;
+    transition: transform 0.3s ease;
+}
+
+.header .social-icons .social-icon.facebook:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    background: #4A6EA9;
+}
+
+.header .social-icons .social-icon.instagram:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    background: linear-gradient(154deg, #FAE100 0%,
+            #FCB720 13%,
+            #FF7950 32%,
+            #FF1C74 58%,
+            #6C1CD1 100%);
+}
+
+.header .social-icons .social-icon.youtube:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    background: #FF000A;
+}
+
+.header .social-icons .social-icon:hover svg path {
+    fill: #fff;
+}
+
+.header .header-cta-btn {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    padding: 14px 30px;
+    background: #758E79;
+    color: var(--White, #FFF);
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.3s ease;
+}
+
+.header .header-cta-btn:hover {
+    background: #465B58;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.nav-close {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 14px;
+    cursor: pointer;
+}
+
+/* hero section */
+.hero-section {
+    position: relative;
+    aspect-ratio: 1920/750;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    background: linear-gradient(to bottom,
+            #00000000 0%, #000000bd 80%);
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero-heading {
+    position: relative;
+    z-index: 1;
+    color: #FFF;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-width: 1084px;
+    padding: 0 10px 65px;
+}
+
+/*  */
+/* online classes info  */
+.online-class-info {
+    background-color: #FFFAF3;
+    padding-top: 95px;
+    padding-bottom: 125px;
+    background-image: url('images/class-info-bg-left.png');
+    background-size: auto 194px;
+    background-position: 0px calc(100% - 75px);
+    background-repeat: no-repeat;
+}
+
+.online-class-info__container {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+}
+
+.online-class-info__content {
+    flex: 1 1 47.625%;
+    max-width: 47.625%;
+}
+
+.online-class-info__media {
+    flex: 1 1 48.1875%;
+    max-width: 48.1875%;
+    position: relative;
+    z-index: 1;
+}
+
+.online-class-info__media::after {
+    content: "";
+    position: absolute;
+    top: 200px;
+    right: -100px;
+    z-index: -1;
+    background: url('images/class-info-bg-right.png');
+    width: 140px;
+    height: 160px;
+    background-repeat: no-repeat;
+}
+
+.online-class-info__title {
+    color: var(--Green-2, #465B58);
+    max-width: 762px;
+    font-family: "Playfair Display", serif;
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.online-class-info__text {
+    max-width: 701px;
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.38;
+    margin-top: 18px;
+}
+
+.online-course-text {
+    padding-bottom: 97px;
+    background-color: #FFFAF3;
+    background-image: url('images/online-course-bg.png');
+    background-size: auto 168px;
+    background-position: 100% calc(100% - 20px);
+    background-repeat: no-repeat;
+}
+
+.online-course-text__wrapper {
+    max-width: 1090px;
+    margin: 0 auto;
+}
+
+.online-course-title {
+    color: #465B58;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.online-course-desc {
+    color: #000;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 11px;
+
+}
+
+/*  */
+
+/* Aromatherapy section start */
+.aromatherapy {
+    position: relative;
+    padding: 79px 0 78px;
+    text-align: center;
+    background: url("images/aromatherapy-class-bg.png") no-repeat center center;
+    background-size: cover;
+    color: #fff;
+}
+
+
+
+.aromatherapy__header {}
+
+.aromatherapy__title {}
+
+.aromatherapy__title {
+    color: #FFF;
+    text-align: center;
+
+    font-family: "Playfair Display", serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 20px;
+
+}
+
+p.aromatherapy__description {
+    color: #FFF;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    font-family: "Montserrat", sans-serif;
+    max-width: 1110px;
+    margin: 0 auto 39px;
+    letter-spacing: 1.2px;
+}
+
+.aromatherapy__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.aromatherapy__card {
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.aromatherapy__image-wrapper {
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.aromatherapy__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.aromatherapy__card:hover .aromatherapy__image {
+    transform: scale(1.05);
+}
+
+.aromatherapy__text {
+    max-width: 355px;
+    margin: 15px auto 0px;
+    transition: all 0.4s ease;
+    color: #FFF;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 1.5px;
+}
+
+.aromatherapy__card:hover .aromatherapy__text {
+    color: #758E79;
+}
+
+.aromatherapy__cta {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding: 16px 30px;
+    border-radius: 50px;
+    max-width: 178px;
+    margin: 0 auto;
+    background: var(--Cream-2, #E7BFAD);
+    color: var(--Black, #000);
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+
+}
+
+.aromatherapy__cta:hover {
+    background-color: #F2E5D2;
+}
+
+/*  */
+
+/* customer review strat */
+.customer-review {
+    background-color: #FFFAF3;
+    padding: 100px 0 106px;
+    background-image: url("images/customer-review-bg.png");
+    background-size: auto 181px;
+    background-position: calc(100% - 0px) 150px;
+    background-repeat: no-repeat;
+
+}
+
+.customer-review-wrapper {
+    max-width: 1780px;
+    position: relative;
+
+}
+
+.customer-review .review-title {
+    color: var(--Green-2, #465B58);
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-width: 1594px;
+    margin: 0 auto;
+
+}
+
+.customer-review .review-desc {
+    color: #000;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-width: 1401px;
+    margin: 10px auto 58px;
+}
+
+.customer-review-slider-wrapper {
+    position: relative;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.customer-review-slider {}
+
+.swiper-slide.review-card-slide {
+    background: #fff;
+    padding: 137px 39px 40px 44px;
+    border-radius: 20px;
+    border: 2px solid #E4E4E4;
+    background: #FFF;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rating-img {
+    display: flex;
+    justify-content: center;
+    margin-top: 21px;
+}
+
+.review-username {
+    margin-top: 20px;
+    color: #000;
+    text-align: center;
+    font-family: "Gloock", serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.review-designation {
+    color: var(--Black, #000);
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    margin: 5px 0 20px;
+    opacity: 0.5;
+}
+
+.review-comment {
+    color: #000;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.46;
+    max-width: 430px;
+    /* 146.667% */
+    padding-bottom: 31px;
+}
+
+.review-img-wrapper {
+    position: relative;
+    margin-top: -250px;
+    z-index: 1;
+
+}
+
+/* .review-img-wrapper:before {
+    content: "";
+    position: absolute;
+    background-image: url('images/Ellipse.png');
+    background-size: auto 141px;
+    background-repeat: no-repeat;
+    background-position: left -5px;
+    width: 280px;
+    height: 280px;
+    top: -24px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: -2;
+    border-radius: 280px;
+} */
+.review-img-wrapper:before {
+    content: "";
+    position: absolute;
+    background: #F2E5D2;
+    width: calc(100% + 40px);
+    height: calc(50% + 20px);
+    top: -24px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: -2;
+    border-radius: 9999px 9999px 0 0;
+    transition: all 0.3s ease;
+}
+
+.customer-review-slider.swiper {
+    padding: 142px 0px 45px;
+}
+
+.custom-prev,
+.custom-next {
+    position: absolute;
+    top: 57%;
+    transform: translate(0, -57%);
+
+    border-radius: 50px;
+    background: #758E79;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.custom-swiper-btn {
+    transition: all 0.5s ease;
+}
+
+.custom-prev {
+    left: 0px;
+}
+
+.custom-next {
+    right: 0px;
+}
+
+.custom-swiper-btn svg {}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    content: none !important;
+}
+
+.review-quote-img {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 18px 16px 19px 17px;
+    border-radius: 50%;
+
+    /* z-index: 1; */
+}
+
+.review-card-slide:hover .review-quote-img::before {
+    background: #758E79;
+}
+
+.review-quote-img svg {
+    z-index: 1;
+}
+
+.review-quote-img::before {
+    content: "";
+    position: absolute;
+    background: #465B58;
+    border: 9px solid #E2E2E2;
+    width: calc(100% + 20px);
+    border-radius: 50%;
+    height: calc(100% + 20px);
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.review-img-wrapper .img-wrapper {
+    width: 232px;
+    height: 232px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.customer-review-slider .review-img {
+    transition: all 0.5s ease;
+}
+
+.review-card-slide:hover .img-wrapper .review-img {
+    transform: scale(1.05);
+}
+
+.review-card-slide:hover .review-img-wrapper:before {
+    background: #E7BFAD;
+}
+
+.custom-swiper-btn:hover svg path {
+    stroke: #000;
+}
+
+.custom-swiper-btn:hover {
+    background: #E7BFAD;
+}
+
+/* blog section  */
+.blog-section {
+    background: url("images/blog-section-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 70px 0 60px;
+}
+
+.blog-section-title {
+    color: #FFF;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.blog-section-desc {
+    color: #FFF;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 14px auto 22px;
+    max-width: 985px;
+
+}
+
+.view-blog-btn {
+
+    padding: 13px 30px;
+    border-radius: 50px;
+    background: var(--Cream, #F2E5D2);
+    color: var(--Black, #000);
+
+    font-family: "Montserrat", sans-serif;
+    max-width: 195px;
+    display: flex;
+    justify-content: center;
+    margin: 60px auto 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 60px 0 0;
+}
+
+.blog-card {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 20px 0 20px 20px;
+}
+
+/* .blog-card::before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 2px);
+    height: calc(100% - 80px);
+    border-radius: 20px 0 20px 20px;
+    background: var(--White, #FFF);
+    display: block;
+    z-index: -1;
+    top: 60px;
+    left: -20px;
+} */
+
+.blog-card-wrapper {
+    /* display: flex;
+    align-items: start;
+    gap: 15px; */
+    /* position: relative; */
+}
+
+.blog-img-wrapper {
+    max-width: 335px;
+    height: 245px;
+    overflow: hidden;
+    border-radius: 20px 20px 0 20px;
+    aspect-ratio: 335/245;
+}
+
+.blog-img-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-card-date {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-top: 29px;
+    margin-left: 18px;
+}
+
+.blog-date {
+    color: var(--Green-2, #465B58);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    position: relative;
+}
+
+.blog-date::after {
+    content: "";
+    position: absolute;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.75 1V3.25M15.25 1V3.25M1 16.75V5.5C1 4.90326 1.23705 4.33097 1.65901 3.90901C2.08097 3.48705 2.65326 3.25 3.25 3.25H16.75C17.3467 3.25 17.919 3.48705 18.341 3.90901C18.7629 4.33097 19 4.90326 19 5.5V16.75M1 16.75C1 17.3467 1.23705 17.919 1.65901 18.341C2.08097 18.7629 2.65326 19 3.25 19H16.75C17.3467 19 17.919 18.7629 18.341 18.341C18.7629 17.919 19 17.3467 19 16.75M1 16.75V9.25C1 8.65326 1.23705 8.08097 1.65901 7.65901C2.08097 7.23705 2.65326 7 3.25 7H16.75C17.3467 7 17.919 7.23705 18.341 7.65901C18.7629 8.08097 19 8.65326 19 9.25V16.75M10 10.75H10.008V10.758H10V10.75ZM10 13H10.008V13.008H10V13ZM10 15.25H10.008V15.258H10V15.25ZM7.75 13H7.758V13.008H7.75V13ZM7.75 15.25H7.758V15.258H7.75V15.25ZM5.5 13H5.508V13.008H5.5V13ZM5.5 15.25H5.508V15.258H5.5V15.25ZM12.25 10.75H12.258V10.758H12.25V10.75ZM12.25 13H12.258V13.008H12.25V13ZM12.25 15.25H12.258V15.258H12.25V15.25ZM14.5 10.75H14.508V10.758H14.5V10.75ZM14.5 13H14.508V13.008H14.5V13Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-size: cover;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    top: -30px;
+    left: 0;
+}
+
+.blog-card-info {
+    margin-top: -190px;
+    padding-left: 50px;
+    padding-bottom: 34px;
+}
+
+.blog-details {
+    padding: 15px 16px 0 25px;
+}
+
+.blog-title {
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    max-width: 294px;
+    letter-spacing: 0.5px;
+    min-height: 58px;
+    ;
+}
+
+.blog-text {
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 20px 0 0px;
+    max-width: 294px;
+
+    min-height: 68px;
+
+}
+
+a.blog-read-more {
+    border-radius: 50px;
+    background: var(--Cream-2, #E7BFAD);
+    color: var(--Black, #000);
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 13px 35px 12px 30px;
+    margin-top: 22px;
+    display: inline-block;
+    position: absolute;
+    bottom: -20px;
+}
+
+/*  */
+
+
+/* Mobile layout */
+@media screen and (max-width:1799px) {
+    .online-class-info__media::after {
+        display: none;
+    }
+
+    /*  */
+
+    .custom-prev {
+        left: 16px;
+    }
+
+    .custom-next {
+        right: 16px;
+    }
+}
+
+@media screen and (max-width:1700px) {
+    .nav-container {
+        gap: 80px;
+    }
+
+    .online-class-info {
+        background-image: none;
+    }
+
+    p br {
+        display: none;
+    }
+}
+
+@media screen and (max-width:1600px) {
+    .header .nav ul {
+        gap: 50px;
+    }
+}
+
+@media screen and (max-width:1440px) {
+    .header .nav ul {
+        gap: 30px;
+    }
+
+    /*  */
+    .customer-review .review-title {
+        font-size: 40px;
+    }
+
+    .customer-review .review-desc {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width:1280px) {
+    .header {
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .hamburger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header nav.nav {
+        position: fixed;
+        inset: 0 auto 0 0;
+        /* top:0; right:auto; bottom:0; left:0 */
+        width: 280px;
+        max-width: 85%;
+        background: #fff;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        padding-top: 8px;
+        display: block;
+    }
+
+    .header .nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 12px 20px 12px;
+    }
+
+    .header .nav li a {
+        display: block;
+        padding: 14px 10px;
+        font-size: 18px;
+    }
+
+    .nav-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 6px;
+    }
+
+    .header .logo {
+        background: none;
+        margin: 0;
+        padding: 0;
+        justify-content: start;
+    }
+
+    .nav-container {
+        gap: 20px;
+    }
+
+    /* When open */
+    .nav-open .header .nav {
+        transform: translateX(0);
+    }
+
+    /* Optionally hide desktop spacing when mobile */
+    .header .nav ul {
+        justify-content: flex-start;
+        align-items: start;
+    }
+
+    /*  */
+    .online-course-text {
+        padding: 0 20px 80px;
+        background-image: none;
+    }
+
+    .online-class-info {
+        padding-bottom: 80px;
+        padding-top: 80px;
+    }
+
+    .online-class-info__container {
+        gap: 20px;
+        justify-content: space-between;
+    }
+
+    .online-class-info__title {
+        font-size: 36px;
+    }
+
+    /*  */
+
+    .aromatherapy__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /*  */
+
+    .customer-review {
+        background-image: none;
+    }
+
+    .customer-review-slider-wrapper {
+        padding: 0 57px;
+    }
+
+    .swiper-slide.review-card-slide {
+        padding: 137px 20px 31px 20px;
+    }
+
+    .review-img-wrapper {
+        margin-top: -201px;
+        /* margin-top: -202px;
+        width: 138px;
+        height: 138px; */
+    }
+
+    .review-img-wrapper .img-wrapper {
+        width: 138px;
+        height: 138px;
+    }
+
+    .review-username {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    .review-designation {
+        margin: 5px 0 10px;
+    }
+
+    .review-quote-img {
+
+        bottom: -24px;
+        padding: 15px 13px 14px 13px;
+    }
+
+    .review-quote-img svg {
+
+        width: 20px;
+    }
+
+    /*  */
+    .blog-details {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    /* .blogs-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .blog-card-info {
+
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .blog-card {
+        margin-top: 75px;
+    }
+
+    .blog-img-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .blog-title {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .blog-text {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .blog-img-wrapper {
+        border-radius: 0px;
+    }
+
+    .blog-card-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .blog-card-date {
+        writing-mode: horizontal-tb;
+        transform: rotate(0deg);
+
+    }
+
+    .blog-card-date {
+        margin-left: 30px;
+        margin-top: 0;
+    }
+    .blog-date::after {
+        top: 50%;
+        transform: translate(0,-50%);
+        left: -23px;
+    } */
+}
+
+@media screen and (max-width:991px) {
+    .header .header-cta {
+        display: none;
+    }
+
+    .header .header-cta.mobile {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        max-width: 100%;
+        flex-direction: column;
+        padding: 10px 12px 20px 12px;
+        align-items: start;
+    }
+
+    .hero-section {
+        aspect-ratio: 2/3;
+        align-items: center;
+    }
+
+    .header .logo img {
+        max-width: 80px;
+    }
+
+    /*  */
+    .online-class-info {
+        padding: 50px 0px;
+    }
+
+    .online-class-info__container {
+        flex-direction: column-reverse;
+
+    }
+
+    .online-class-info__content {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .online-class-info__media {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .online-class-info__title {
+        text-align: center;
+        font-size: 32px;
+    }
+
+    .online-class-info__text {
+        text-align: center;
+        margin: 18px auto 0px;
+    }
+
+    .online-course-text {
+        padding: 0 20px 50px;
+    }
+
+    .online-course-title {
+        font-size: 32px;
+    }
+
+    /*  */
+    .aromatherapy {
+        padding: 50px 0;
+    }
+
+    .aromatherapy__title {
+        font-size: 32px;
+    }
+
+    p.aromatherapy__description {
+        font-size: 16px;
+        margin: 0 auto 20px;
+    }
+
+    .aromatherapy__grid {
+        margin-bottom: 30px;
+    }
+
+    .aromatherapy__text {
+        font-size: 16px;
+    }
+
+    /*  */
+    .customer-review .review-desc {
+        margin: 10px auto 30px;
+    }
+
+    .customer-review-slider-wrapper {
+        padding: 0 0px;
+    }
+
+    .customer-review-slider.swiper {
+        padding: 96px 0px 55px;
+    }
+
+    .custom-next {
+        top: unset;
+        bottom: -70px;
+        transform: translate(-50%, 0);
+        left: calc(50% + 40px);
+    }
+
+    .custom-prev {
+        left: calc(50% - 30px);
+        top: unset;
+        bottom: -70px;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media screen and (max-width:768px) {
+    .online-class-info {
+        padding: 40px 0px;
+    }
+
+    .online-course-text {
+        padding: 0 20px 40px;
+    }
+
+    .online-class-info__title {
+        font-size: 28px;
+    }
+
+    .online-course-title {
+        font-size: 28px;
+    }
+
+    .online-class-info__text {
+        font-size: 16px;
+    }
+
+    .online-course-desc {
+        font-size: 16px;
+    }
+
+    /*  */
+
+    .customer-review .review-title {
+        font-size: 35px;
+    }
+
+    .customer-review .review-desc {
+        font-size: 20px;
+    }
+
+    .review-comment {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* .blogs-grid {
+        grid-template-columns: repeat(1, 1fr);
+    } */
+}
+
+@media screen and (max-width:480px) {
+    .hero-heading {
+        font-size: 20px;
+    }
+
+    /*  */
+    .aromatherapy__grid {
+        grid-template-columns: 1fr;
+    }
+
+    /*  */
+    .customer-review {
+        padding: 50px 0px;
+    }
+
+}

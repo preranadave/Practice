@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScrollRotator — Reusable Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* =====================================================
+   BASE PAGE RESET
+   ===================================================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0a0a0a;
+  color: #f0f0f0;
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   ░░░ SCROLL-ROTATOR COMPONENT ░░░
+   
+   HOW TO USE IN YOUR OWN SITE:
+   1. Copy everything between the START and END markers
+   2. Drop the HTML into your <body>
+   3. Drop the CSS into your <style>
+   4. Drop the JS into your <script>
+   5. Change --sr-object to any inline SVG you want
+   6. Adjust --sr-spin-* keyframe values to taste
+   ===================================================== */
+
+/* ── START: SCROLL-ROTATOR CSS ──────────────────────── */
+:root {
+  --sr-scroll: 0;              /* updated by JS */
+  --sr-size: 320px;            /* width of the floating object */
+  --sr-perspective: 900px;     /* 3-D depth feel */
+}
+
+/* Fixed viewport anchor */
+.sr-anchor {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  perspective: var(--sr-perspective);
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* The object that spins */
+.sr-object {
+  position: absolute;
+  transform-origin: center center;
+  width: var(--sr-size);
+  transform: translate(-50%, -50%);
+
+  /* Scroll-driven animation trick:
+     animation is paused, delay is negative scroll progress.
+     So 0% of scroll = start of keyframe, 100% = end. */
+  animation: sr-spin 1s linear both paused;
+  animation-delay: calc(var(--sr-scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes sr-spin {
+  0%   { transform: translate(-50%,-50%) rotateX(0deg)   rotateY(0deg)   rotateZ(0deg)   translateY(0px); }
+  20%  { transform: translate(-50%,-50%) rotateX(100deg) rotateY(60deg)  rotateZ(18deg)  translateY(-40px); }
+  40%  { transform: translate(-50%,-50%) rotateX(200deg) rotateY(130deg) rotateZ(40deg)  translateY(20px); }
+  60%  { transform: translate(-50%,-50%) rotateX(300deg) rotateY(200deg) rotateZ(70deg)  translateY(-25px); }
+  80%  { transform: translate(-50%,-50%) rotateX(440deg) rotateY(290deg) rotateZ(110deg) translateY(15px); }
+  100% { transform: translate(-50%,-50%) rotateX(580deg) rotateY(360deg) rotateZ(160deg) translateY(0px); }
+}
+
+/* Optional: glow halo under the object */
+.sr-glow {
+  position: absolute;
+  width: calc(var(--sr-size) * 1.1);
+  height: calc(var(--sr-size) * 0.18);
+  background: radial-gradient(ellipse, var(--sr-glow-color, rgba(180,120,40,0.45)) 0%, transparent 70%);
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(var(--sr-size) * 0.38));
+  filter: blur(14px);
+  pointer-events: none;
+  animation: sr-glow-pulse 1s linear both paused;
+  animation-delay: calc(var(--sr-scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+@keyframes sr-glow-pulse {
+  0%   { opacity: 0.9; transform: translate(-50%, calc(var(--sr-size) * 0.38)) scaleX(1);   }
+  50%  { opacity: 0.3; transform: translate(-50%, calc(var(--sr-size) * 0.28)) scaleX(0.7); }
+  100% { opacity: 0.8; transform: translate(-50%, calc(var(--sr-size) * 0.42)) scaleX(1.1); }
+}
+
+/* Optional: scroll-progress bar */
+.sr-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--sr-progress-color, #c97c2e);
+  z-index: 9999;
+  width: 0%;
+  animation: sr-progressbar 1s linear both paused;
+  animation-delay: calc(var(--sr-scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+@keyframes sr-progressbar { to { width: 100%; } }
+/* ── END: SCROLL-ROTATOR CSS ────────────────────────── */
+
+
+/* =====================================================
+   DEMO PAGE CHROME (not part of the component)
+   ===================================================== */
+.demo-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(10,10,10,0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.demo-nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.2em;
+  color: #c97c2e;
+}
+.demo-nav-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
+/* Sections */
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 8vw;
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.s1 { background: radial-gradient(ellipse at 50% 70%, #1a0e05 0%, #0a0a0a 70%); }
+.s2 { background: radial-gradient(ellipse at 30% 50%, #051015 0%, #0a0a0a 70%); }
+.s3 { background: radial-gradient(ellipse at 70% 40%, #0a1205 0%, #0a0a0a 70%); }
+.s4 { background: radial-gradient(ellipse at 50% 60%, #12050d 0%, #0a0a0a 70%); }
+.s5 { background: radial-gradient(ellipse at 50% 50%, #0d0a00 0%, #0a0a0a 70%); }
+
+.section-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #c97c2e;
+  margin-bottom: 20px;
+  border: 1px solid rgba(201,124,46,0.3);
+  padding: 5px 14px;
+  border-radius: 100px;
+  display: inline-block;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  line-height: 0.88;
+  color: #f0f0f0;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.section-title em { color: #c97c2e; font-style: normal; }
+.section-body {
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  line-height: 1.8;
+  color: rgba(240,240,240,0.45);
+  max-width: 480px;
+  text-align: center;
+}
+
+/* ── CODE BLOCK ── */
+.code-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 500;
+  background: rgba(10,10,10,0.92);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  width: 260px;
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+.code-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  cursor: pointer;
+  user-select: none;
+}
+.code-dots { display: flex; gap: 5px; }
+.code-dot  { width: 9px; height: 9px; border-radius: 50%; }
+.dot-r { background: #e84c1e; } .dot-y { background: #f5c842; } .dot-g { background: #4caf50; }
+.code-panel-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.4);
+  margin-left: 4px;
+}
+.code-panel-body {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+  padding: 14px;
+  max-height: 220px;
+  overflow-y: auto;
+  display: none;
+}
+.code-panel-body.open { display: block; }
+.code-panel-body .kw  { color: #c97c2e; }
+.code-panel-body .cl  { color: #f5c842; }
+.code-panel-body .cm  { color: rgba(255,255,255,0.2); }
+.code-toggle-hint {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.2);
+  text-align: right;
+  padding: 0 14px 10px;
+  letter-spacing: 0.1em;
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.2);
+  animation: bob 2.2s ease-in-out infinite;
+}
+@keyframes bob {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(9px); }
+}
+
+/* Fade-in for section text */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ── SCROLL PROGRESS BAR (part of component) ── -->
+<div class="sr-progress"></div>
+
+<!-- ── NAV ── -->
+<nav class="demo-nav">
+  <span class="demo-nav-logo">ScrollRotator</span>
+  <span class="demo-nav-tag">Reusable Component</span>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════
+     ░░░ SCROLL-ROTATOR HTML ░░░
+     Drop this block anywhere in your <body>.
+     Replace the <svg> inside .sr-object with any image
+     or SVG you want to float and spin.
+     ════════════════════════════════════════════════════ -->
+<div class="sr-anchor">
+  <!-- Glow halo (optional, remove if not needed) -->
+  <div class="sr-glow"></div>
+
+  <!-- The rotating object — swap this SVG for anything -->
+  <div class="sr-object">
+
+    <!--
+      SWAP THIS SVG ↓ with your own image:
+      <img src="your-product.png" style="width:100%;filter:drop-shadow(...)">
+      or any inline SVG you like.
+    -->
+    <svg viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;filter:drop-shadow(0 0 28px rgba(201,124,46,0.5)) drop-shadow(0 8px 24px rgba(0,0,0,0.7));">
+      <defs>
+        <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#7a3912"/>
+          <stop offset="40%"  stop-color="#5c2d0e"/>
+          <stop offset="100%" stop-color="#2d1005"/>
+        </linearGradient>
+        <linearGradient id="topGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#9a5520"/>
+          <stop offset="100%" stop-color="#5c2d0e"/>
+        </linearGradient>
+        <linearGradient id="sideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#2d1005"/>
+          <stop offset="100%" stop-color="#5c2d0e"/>
+        </linearGradient>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#c97c2e"/>
+          <stop offset="50%"  stop-color="#f5c842"/>
+          <stop offset="100%" stop-color="#c97c2e"/>
+        </linearGradient>
+        <linearGradient id="grooveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#1a0803"/>
+          <stop offset="50%"  stop-color="#3d1a0a"/>
+          <stop offset="100%" stop-color="#1a0803"/>
+        </linearGradient>
+        <linearGradient id="foilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#8a4820" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#2d1005" stop-opacity="0.6"/>
+        </linearGradient>
+        <linearGradient id="sheenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#fff" stop-opacity="0.14"/>
+          <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="barShadow">
+          <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000" flood-opacity="0.5"/>
+        </filter>
+      </defs>
+      <!-- Side face -->
+      <polygon points="14,28 42,10 42,182 14,200" fill="url(#sideGrad)" opacity="0.9"/>
+      <!-- Top face -->
+      <polygon points="42,10 398,10 398,28 42,28" fill="url(#topGrad)"/>
+      <!-- Main body -->
+      <rect x="42" y="28" width="356" height="154" rx="6" fill="url(#bodyGrad)" filter="url(#barShadow)"/>
+      <!-- Segment grooves -->
+      <rect x="48" y="100" width="344" height="3" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <rect x="119" y="34" width="3" height="63" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <rect x="196" y="34" width="3" height="63" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <rect x="273" y="34" width="3" height="63" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <rect x="350" y="34" width="3" height="63" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <rect x="119" y="106" width="3" height="70" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <rect x="196" y="106" width="3" height="70" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <rect x="273" y="106" width="3" height="70" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <rect x="350" y="106" width="3" height="70" rx="1" fill="url(#grooveGrad)" opacity="0.85"/>
+      <!-- Segment fills -->
+      <rect x="49"  y="35" width="68" height="62" rx="3" fill="#7a3912" opacity="0.3"/>
+      <rect x="122" y="35" width="72" height="62" rx="3" fill="#5c2d0e" opacity="0.3"/>
+      <rect x="200" y="35" width="71" height="62" rx="3" fill="#7a3912" opacity="0.3"/>
+      <rect x="277" y="35" width="71" height="62" rx="3" fill="#5c2d0e" opacity="0.3"/>
+      <rect x="354" y="35" width="40" height="62" rx="3" fill="#7a3912" opacity="0.3"/>
+      <rect x="49"  y="107" width="68" height="67" rx="3" fill="#5c2d0e" opacity="0.3"/>
+      <rect x="122" y="107" width="72" height="67" rx="3" fill="#7a3912" opacity="0.3"/>
+      <rect x="200" y="107" width="71" height="67" rx="3" fill="#5c2d0e" opacity="0.3"/>
+      <rect x="277" y="107" width="71" height="67" rx="3" fill="#7a3912" opacity="0.3"/>
+      <rect x="354" y="107" width="40" height="67" rx="3" fill="#5c2d0e" opacity="0.3"/>
+      <!-- Label band -->
+      <rect x="80" y="46" width="260" height="118" rx="5" fill="#1a0803" opacity="0.72"/>
+      <rect x="80" y="46" width="260" height="118" rx="5" fill="url(#foilGrad)"/>
+      <rect x="80" y="46" width="260" height="118" rx="5" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.7"/>
+      <rect x="86" y="52" width="248" height="106" rx="3" fill="none" stroke="url(#goldGrad)" stroke-width="0.7" opacity="0.35"/>
+      <!-- Brand -->
+      <text x="210" y="96" font-family="'Bebas Neue', Impact, sans-serif" font-size="42" letter-spacing="10" text-anchor="middle" fill="url(#goldGrad)">FORGED</text>
+      <text x="210" y="116" font-family="'DM Sans', Arial, sans-serif" font-size="9" letter-spacing="4" text-anchor="middle" fill="#f9f2e3" opacity="0.6">DARK CHOCOLATE PROTEIN BAR</text>
+      <!-- Badge -->
+      <rect x="155" y="126" width="110" height="26" rx="13" fill="#e84c1e" opacity="0.92"/>
+      <text x="210" y="143" font-family="'Bebas Neue', Impact, sans-serif" font-size="14" letter-spacing="3" text-anchor="middle" fill="#fff">30G PROTEIN</text>
+      <!-- Sheen -->
+      <ellipse cx="128" cy="60" rx="58" ry="20" fill="url(#sheenGrad)" transform="rotate(-16,128,60)"/>
+      <!-- Wrapper folds -->
+      <line x1="42" y1="44"  x2="14" y2="62"  stroke="#9a5520" stroke-width="0.8" opacity="0.45"/>
+      <line x1="42" y1="68"  x2="14" y2="86"  stroke="#9a5520" stroke-width="0.8" opacity="0.4"/>
+      <line x1="42" y1="94"  x2="14" y2="112" stroke="#9a5520" stroke-width="0.8" opacity="0.4"/>
+      <line x1="42" y1="118" x2="14" y2="136" stroke="#9a5520" stroke-width="0.8" opacity="0.4"/>
+      <line x1="42" y1="144" x2="14" y2="162" stroke="#9a5520" stroke-width="0.8" opacity="0.4"/>
+      <line x1="42" y1="164" x2="14" y2="182" stroke="#9a5520" stroke-width="0.8" opacity="0.4"/>
+      <!-- Outer border -->
+      <rect x="42" y="28" width="356" height="154" rx="6" fill="none" stroke="#1a0803" stroke-width="1.5" opacity="0.5"/>
+    </svg>
+
+  </div>
+</div>
+<!-- ════════ END SCROLL-ROTATOR HTML ════════ -->
+
+
+<!-- ════════════════════════════════════════════
+     DEMO SECTIONS — your page content goes here
+     ════════════════════════════════════════════ -->
+<section class="s1">
+  <div class="fade-up"><span class="section-chip">Section 01 — Hero</span></div>
+  <h1 class="section-title fade-up">SCROLL<br><em>DOWN</em></h1>
+  <p class="section-body fade-up">The object floats fixed in the viewport and rotates as you scroll through every section below.</p>
+  <div class="scroll-hint">↓ &nbsp; scroll &nbsp; ↓</div>
+</section>
+
+<section class="s2">
+  <div class="fade-up"><span class="section-chip">Section 02 — Feature</span></div>
+  <h2 class="section-title fade-up">ONE<br>OBJECT<br><em>ALL</em><br>SECTIONS</h2>
+  <p class="section-body fade-up">The same element passes through every part of your page. No libraries. Pure CSS scroll-driven animation.</p>
+</section>
+
+<section class="s3">
+  <div class="fade-up"><span class="section-chip">Section 03 — How It Works</span></div>
+  <h2 class="section-title fade-up">CSS<br><em>ONLY</em><br>TRICK</h2>
+  <p class="section-body fade-up">Animation is paused. A negative <code style="color:#c97c2e;font-family:'DM Mono',monospace">animation-delay</code> tied to scroll progress scrubs through the keyframes frame by frame.</p>
+</section>
+
+<section class="s4">
+  <div class="fade-up"><span class="section-chip">Section 04 — Customise</span></div>
+  <h2 class="section-title fade-up">SWAP<br><em>ANY</em><br>OBJECT</h2>
+  <p class="section-body fade-up">Replace the SVG inside <code style="color:#c97c2e;font-family:'DM Mono',monospace">.sr-object</code> with an &lt;img&gt;, a product photo, or any SVG. Change <code style="color:#c97c2e;font-family:'DM Mono',monospace">--sr-size</code> to resize.</p>
+</section>
+
+<section class="s5">
+  <div class="fade-up"><span class="section-chip">Section 05 — Done</span></div>
+  <h2 class="section-title fade-up">THAT'S<br><em>IT</em></h2>
+  <p class="section-body fade-up">Three things: the CSS block, the HTML block, and one line of JS. Copy, paste, ship.</p>
+</section>
+
+
+<!-- ── MINI CODE REFERENCE PANEL ── -->
+<div class="code-panel" id="codePanel">
+  <div class="code-panel-header" onclick="toggleCode()">
+    <div class="code-dots">
+      <div class="code-dot dot-r"></div>
+      <div class="code-dot dot-y"></div>
+      <div class="code-dot dot-g"></div>
+    </div>
+    <span class="code-panel-title">scroll-rotator.js</span>
+  </div>
+  <div class="code-panel-body" id="codePanelBody">
+<span class="cm">// ── SCROLL-ROTATOR JS ──────────────</span>
+<span class="cm">// Paste once in your &lt;script&gt; block.</span>
+<span class="cm">// No dependencies needed.</span>
+
+<span class="kw">window</span>.<span class="cl">addEventListener</span>(<span style="color:#4caf50">'scroll'</span>, () => {
+  <span class="kw">const</span> scrolled = <span class="kw">window</span>.pageYOffset;
+  <span class="kw">const</span> maxScroll =
+    <span class="kw">document</span>.body.offsetHeight
+    - <span class="kw">window</span>.innerHeight;
+  <span class="kw">const</span> progress = scrolled / maxScroll;
+  <span class="kw">document</span>.body.style
+    .setProperty(<span style="color:#4caf50">'--sr-scroll'</span>, progress);
+}, { passive: <span class="kw">true</span> });
+
+<span class="cm">// ── CUSTOMISE ──────────────────────</span>
+<span class="cm">// CSS vars to tweak:</span>
+<span class="cm">//  --sr-size        object width</span>
+<span class="cm">//  --sr-perspective depth feel</span>
+<span class="cm">//  --sr-glow-color  halo color</span>
+  </div>
+  <div class="code-toggle-hint" id="codeHint">click to expand ↑</div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     ░░░ SCROLL-ROTATOR JS ░░░
+     Paste this once anywhere in your page.
+     ════════════════════════════════════════════ -->
+<script>
+// ── Scroll → CSS variable ──────────────────────────────
+// This is the only JS needed for the rotation to work.
+window.addEventListener('scroll', () => {
+  const scrolled   = window.pageYOffset;
+  const maxScroll  = document.body.offsetHeight - window.innerHeight;
+  const progress   = scrolled / maxScroll;          // 0 at top, 1 at bottom
+  document.body.style.setProperty('--sr-scroll', progress);
+}, { passive: true });
+// ── END SCROLL-ROTATOR JS ─────────────────────────────
+
+// ── Demo extras (not part of the component) ──────────
+
+// Fade-in sections as they enter viewport
+const faders = document.querySelectorAll('.fade-up');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+faders.forEach(el => io.observe(el));
+
+// Code panel toggle
+function toggleCode() {
+  const body = document.getElementById('codePanelBody');
+  const hint = document.getElementById('codeHint');
+  body.classList.toggle('open');
+  hint.textContent = body.classList.contains('open') ? 'click to collapse ↓' : 'click to expand ↑';
+}
+</script>
+
+</body>
+</html>

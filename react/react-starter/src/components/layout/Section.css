@@ -1,0 +1,17 @@
+/* Backgrounds */
+.section--bg-default { background: var(--color-bg); }
+.section--bg-alt     { background: var(--color-bg-alt); }
+.section--bg-dark    { background: var(--color-text); color: #fff; }
+.section--bg-primary { background: var(--color-primary); color: #fff; }
+.section--bg-none    { background: transparent; }
+
+/* Vertical padding sizes */
+.section--sm { padding-top: var(--space-10); padding-bottom: var(--space-10); }
+.section--md { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+.section--lg { padding-top: var(--space-24); padding-bottom: var(--space-24); }
+.section--xl { padding-top: var(--space-32); padding-bottom: var(--space-32); }
+
+@media (max-width: 768px) {
+  .section--lg { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+  .section--xl { padding-top: var(--space-20); padding-bottom: var(--space-20); }
+}

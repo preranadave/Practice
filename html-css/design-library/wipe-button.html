@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            background: url(https://s25.postimg.cc/44v3ztpv3/image.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #888;
+            font-size: 20px;
+            font-family: "Oswald", sans-serif;
+            font-weight: lighter;
+            border: 0;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: 1px solid rgba(143, 144, 145, 0.2);
+            background-color: rgba(143, 144, 145, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn:focus {
+            color: #fff;
+            outline: none;
+        }
+
+        .btn:before {
+            position: absolute;
+            top: 0;
+            left: -75%;
+            z-index: 2;
+            display: block;
+            content: '';
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(229, 172, 142, 0), rgba(255, 255, 255, 0.5) 100%, rgba(229, 172, 142, 0));
+            -webkit-transform: skewX(-25deg);
+            transform: skewX(-25deg);
+        }
+
+        .btn:hover {
+            color: #fff;
+        }
+
+        .btn:hover::before {
+            -webkit-animation: shine .75s;
+            animation: shine .75s;
+        }
+
+        @-webkit-keyframes shine {
+            100% {
+                left: 125%;
+            }
+        }
+
+        @keyframes shine {
+            100% {
+                left: 125%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <button type="submit" class="btn"> Send Message </button>
+
+</body>
+
+</html>

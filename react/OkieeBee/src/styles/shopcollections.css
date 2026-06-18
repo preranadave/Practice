@@ -1,0 +1,138 @@
+.shop-by-collection {
+    padding-bottom: 162px;
+
+}
+
+.shop-by-collection h2 {
+    text-align: center;
+
+}
+
+.shop-by-collection__list {
+    display: flex;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.shop-by-collection__item {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    border-radius: 999px 999px 0 0;
+    overflow: hidden;
+    z-index: 1;
+    padding: 60px 0px 0px;
+}
+
+.shop-by-collection__item::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 160px);
+    background-color: #F9F4E5;
+    z-index: 0;
+    top: 0;
+    left: 0;
+
+}
+
+.shop-by-collection__list .shop-by-collection__item:nth-child(even)::after {
+    background-color: #FEF2C7;
+}
+
+.shop-by-collection__content h4 {
+    max-width: 253px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #786612;
+
+}
+
+.shop-by-collection__list .shop-by-collection__item:nth-child(even) h4 {
+    color: #BE7131;
+}
+
+.shop-by-collection__img img {
+    z-index: 2;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.shop-by-collection__list .shop-by-collection__item:hover .shop-by-collection__img img {
+    transform: translateY(-15px);
+}
+
+.shop-by-collection__list .shop-by-collection__item {
+    padding: 30px 0px 0px;
+}
+
+@media (max-width:1024px) {
+    .shop-by-collection__list {
+
+        gap: 15px;
+    }
+
+    .shop-by-collection__content h4 {
+        font-size: 18px;
+    }
+
+    .shop-by-collection__item::after {
+        height: calc(100% - 145px);
+    }
+
+}
+
+@media (max-width:991px) {
+    .shop-by-collection__list {
+        margin-top: 30px;
+    }
+
+    .shop-by-collection {
+        padding-bottom: 60px;
+    }
+}
+
+@media (max-width:768px) {
+    .shop-by-collection__list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .shop-by-collection__item {
+        width: calc(50% - 15px);
+    }
+
+    .shop-by-collection__content h4 {
+        font-size: 16px;
+    }
+
+    .shop-by-collection__item::after {
+        height: calc(100% - 100px);
+
+    }
+
+
+    .shop-by-collection {
+        padding-bottom: 40px;
+    }
+}
+
+@media (max-width:480px) {
+    .shop-by-collection__item {
+        width: 100%;
+    }
+
+    .shop-by-collection__item::after {
+        height: calc(100% - 115px);
+    }
+
+    .shop-by-collection__list .shop-by-collection__item {
+        padding: 15px 0px 0px;
+    }
+
+}

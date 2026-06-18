@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            display: flex;
+            min-height: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: sans-serif;
+        }
+
+        ul,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tg-list {
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .tg-list-item {
+            margin: 0 2em;
+        }
+
+        h2 {
+            color: #777;
+        }
+
+        h4 {
+            color: #999;
+        }
+
+        /* Base toggle */
+        .tgl {
+            display: none;
+        }
+
+        .tgl,
+        .tgl:after,
+        .tgl:before,
+        .tgl *,
+        .tgl *:after,
+        .tgl *:before,
+        .tgl+.tgl-btn {
+            box-sizing: border-box;
+        }
+
+        .tgl+.tgl-btn {
+            outline: 0;
+            display: block;
+            width: 4em;
+            height: 2em;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tgl+.tgl-btn:after,
+        .tgl+.tgl-btn:before {
+            position: relative;
+            display: block;
+            content: "";
+            width: 50%;
+            height: 100%;
+        }
+
+        .tgl+.tgl-btn:after {
+            left: 0;
+        }
+
+        .tgl+.tgl-btn:before {
+            display: none;
+        }
+
+        .tgl:checked+.tgl-btn:after {
+            left: 50%;
+        }
+
+        /* --- LIGHT --- */
+        .tgl-light+.tgl-btn {
+            background: #f0f0f0;
+            border-radius: 2em;
+            padding: 2px;
+            transition: all .4s ease;
+        }
+
+        .tgl-light+.tgl-btn:after {
+            border-radius: 50%;
+            background: #fff;
+            transition: all .2s ease;
+        }
+
+        .tgl-light:checked+.tgl-btn {
+            background: #9FD6AE;
+        }
+
+        /* --- iOS --- */
+        .tgl-ios+.tgl-btn {
+            background: #fbfbfb;
+            border-radius: 2em;
+            padding: 2px;
+            border: 1px solid #e8eae9;
+            transition: all .4s ease;
+        }
+
+        .tgl-ios+.tgl-btn:after {
+            border-radius: 2em;
+            background: #fbfbfb;
+            transition: left .3s cubic-bezier(0.175, 0.885, 0.320, 1.275), padding .3s ease, margin .3s ease;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 4px 0 rgba(0, 0, 0, .08);
+        }
+
+        .tgl-ios+.tgl-btn:active {
+            box-shadow: inset 0 0 0 2em #e8eae9;
+        }
+
+        .tgl-ios+.tgl-btn:active:after {
+            padding-right: .8em;
+        }
+
+        .tgl-ios:checked+.tgl-btn {
+            background: #86d993;
+        }
+
+        .tgl-ios:checked+.tgl-btn:active:after {
+            margin-left: -.8em;
+        }
+
+        /* --- SKEWED --- */
+        .tgl-skewed+.tgl-btn {
+            overflow: hidden;
+            transform: skew(-10deg);
+            background: #888;
+            transition: all .2s ease;
+            font-family: sans-serif;
+        }
+
+        .tgl-skewed+.tgl-btn:after,
+        .tgl-skewed+.tgl-btn:before {
+            transform: skew(10deg);
+            position: absolute;
+            width: 100%;
+            line-height: 2em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .4);
+            text-align: center;
+            transition: all .2s ease;
+        }
+
+        .tgl-skewed+.tgl-btn:after {
+            left: 100%;
+            content: attr(data-tg-on);
+        }
+
+        .tgl-skewed+.tgl-btn:before {
+            left: 0;
+            content: attr(data-tg-off);
+        }
+
+        .tgl-skewed:checked+.tgl-btn {
+            background: #86d993;
+        }
+
+        .tgl-skewed:checked+.tgl-btn:before {
+            left: -100%;
+        }
+
+        .tgl-skewed:checked+.tgl-btn:after {
+            left: 0;
+        }
+
+        /* --- FLAT --- */
+        .tgl-flat+.tgl-btn {
+            padding: 2px;
+            background: #fff;
+            border: 4px solid #f2f2f2;
+            border-radius: 2em;
+            transition: all .2s ease;
+        }
+
+        .tgl-flat+.tgl-btn:after {
+            background: #f2f2f2;
+            border-radius: 1em;
+            transition: all .2s ease;
+        }
+
+        .tgl-flat:checked+.tgl-btn {
+            border-color: #7FC6A6;
+        }
+
+        .tgl-flat:checked+.tgl-btn:after {
+            left: 50%;
+            background: #7FC6A6;
+        }
+
+        /* --- FLIP --- */
+        .tgl-flip+.tgl-btn {
+            padding: 2px;
+            font-family: sans-serif;
+            perspective: 100px;
+            transition: all .2s ease;
+        }
+
+        .tgl-flip+.tgl-btn:after,
+        .tgl-flip+.tgl-btn:before {
+            position: absolute;
+            width: 100%;
+            line-height: 2em;
+            font-weight: bold;
+            color: #fff;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            border-radius: 4px;
+            transition: all .4s ease;
+        }
+
+        .tgl-flip+.tgl-btn:before {
+            content: attr(data-tg-off);
+            background: #FF3A19;
+        }
+
+        .tgl-flip+.tgl-btn:after {
+            content: attr(data-tg-on);
+            background: #02C66F;
+            transform: rotateY(-180deg);
+        }
+
+        .tgl-flip+.tgl-btn:active:before {
+            transform: rotateY(-20deg);
+        }
+
+        .tgl-flip:checked+.tgl-btn:before {
+            transform: rotateY(180deg);
+        }
+
+        .tgl-flip:checked+.tgl-btn:after {
+            transform: rotateY(0);
+            background: #7FC6A6;
+        }
+
+        .tgl-flip:checked+.tgl-btn:active:after {
+            transform: rotateY(20deg);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Toggle 'em</h2>
+    <ul class="tg-list">
+        <li class="tg-list-item">
+            <h4>Light</h4>
+            <input id="cb1" class="tgl tgl-light" type="checkbox">
+            <label class="tgl-btn" for="cb1"></label>
+        </li>
+
+        <li class="tg-list-item">
+            <h4>iOS</h4>
+            <input id="cb2" class="tgl tgl-ios" type="checkbox">
+            <label class="tgl-btn" for="cb2"></label>
+        </li>
+
+        <li class="tg-list-item">
+            <h4>Skewed</h4>
+            <input id="cb3" class="tgl tgl-skewed" type="checkbox">
+            <label class="tgl-btn" for="cb3" data-tg-off="OFF" data-tg-on="ON"></label>
+        </li>
+
+        <li class="tg-list-item">
+            <h4>Flat</h4>
+            <input id="cb4" class="tgl tgl-flat" type="checkbox">
+            <label class="tgl-btn" for="cb4"></label>
+        </li>
+
+        <li class="tg-list-item">
+            <h4>Flip</h4>
+            <input id="cb5" class="tgl tgl-flip" type="checkbox">
+            <label class="tgl-btn" for="cb5" data-tg-off="Nope" data-tg-on="Yeah!"></label>
+        </li>
+    </ul>
+
+</body>
+
+</html>

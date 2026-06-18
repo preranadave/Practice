@@ -1,0 +1,50 @@
+<div class="page-width">
+    <div class="about-us-text">
+        {% if section.settings.left_text != blank %}
+        <div class="left-text">{{ section.settings.left_text }}</div>
+        {% endif %}
+        <div class="right-text">
+            {% if section.settings.learn_more_desc != blank %}
+            <div class="learn-more-desc">{{ section.settings.learn_more_desc }}</div>
+            {% endif %}
+            {% if section.settings.learn_more_btn != blank %}
+            <a href="{{ section.settings.learn_more_btn_url }}" class="learn-more-btn">{{ section.settings.learn_more_btn }}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% {% schema %}
+    {
+        "name": "About Us text",
+        "class": "about-us-text",
+        "settings": [
+            {
+                "type": "text",
+                "id": "left_text",
+                "label": "Left Text"
+            },
+            
+            {
+                "type": "richtext",
+                "id": "learn_more_desc",
+                "label": "Learn More Description"
+            },
+            {
+                "type": "text",
+                "id": "learn_more_btn",
+                "label": "Learn More Button"
+            },
+            {
+            "type":"url",
+            "id":"learn_more_btn_url",
+            "label":"Learn More Button URL"
+            }
+        
+        ],
+        "presets": [
+            {
+                "name": "About Us"
+            }
+        ]   
+    }
+{% endschema %} %}

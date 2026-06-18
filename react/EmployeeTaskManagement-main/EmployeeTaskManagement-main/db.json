@@ -1,0 +1,128 @@
+{
+  "employees": [
+    {
+      "id": "477c",
+      "name": "prerana",
+      "email": "prerana@gmail.com",
+      "Password": "123",
+      "tasknumbers": {
+        "newtask": 5,
+        "active": 1,
+        "completed": 0,
+        "failed": 0,
+        "complete": 2
+      },
+      "tasks": [
+        {
+          "id": "0d31a7f8-754e-46a5-8f5f-25ee3729dda1",
+          "active": false,
+          "newtask": false,
+          "completed": false,
+          "failed": false,
+          "Title": "teste=ing",
+          "Description": "texts",
+          "Date": "2024-11-21",
+          "Category": "dev ",
+          "Priority": "high",
+          "complete": true
+        },
+        {
+          "id": "0b55091d-95ae-450a-bccd-c78b24574885",
+          "active": false,
+          "newtask": false,
+          "completed": true,
+          "failed": false,
+          "Title": "new test task",
+          "Description": "texts",
+          "Date": "2024-11-30",
+          "Category": "dev test",
+          "Priority": "high"
+        },
+        {
+          "id": "60caf04b-a5e0-4ac1-b4e0-18676025e120",
+          "active": true,
+          "newtask": false,
+          "completed": false,
+          "failed": false,
+          "Title": "hello",
+          "Description": "low task",
+          "Date": "2024-11-21",
+          "Category": "dev",
+          "Priority": "low"
+        },
+        {
+          "id": "703853f4-a39d-4fa6-8f8d-f376af5ca1b1",
+          "active": false,
+          "newtask": false,
+          "completed": false,
+          "failed": true,
+          "Title": "active task",
+          "Description": "low task",
+          "Date": "2024-11-21",
+          "Category": "dev",
+          "Priority": "low"
+        },
+        {
+          "id": "775d75e0-4add-4605-aed6-f864599e9220",
+          "active": false,
+          "newtask": true,
+          "completed": false,
+          "failed": false,
+          "Title": "complete this task",
+          "Description": "complete this task",
+          "Date": "2024-11-21",
+          "Category": "dev",
+          "Priority": "low"
+        }
+      ]
+    },
+    {
+      "id": "c803",
+      "name": "janvi",
+      "email": "janvi@gmail.com",
+      "Password": "123",
+      "tasknumbers": {
+        "newtask": 1,
+        "active": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "tasks": [
+        {
+          "id": "986638e1-b52a-4059-8773-31f10b8d173e",
+          "active": false,
+          "newtask": true,
+          "completed": false,
+          "failed": false,
+          "Title": "new task her",
+          "Description": "high",
+          "Date": "2024-11-20",
+          "Category": "deb",
+          "Priority": "high"
+        }
+      ]
+    },
+    {
+      "id": "0d50",
+      "name": "himesh",
+      "email": "himmesh@gmail.com",
+      "Password": "123",
+      "tasknumbers": {
+        "newtask": 0,
+        "active": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "tasks": []
+    }
+  ],
+  "admin": [
+    {
+      "id": "2668",
+      "name": "admin",
+      "email": "admin@example.com",
+      "Password": "123",
+      "firstname": "admin"
+    }
+  ]
+}

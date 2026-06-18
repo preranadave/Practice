@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* ── START: SCROLL-ROTATOR CSS ──────────────────────── */
+    :root {
+      --sr-scroll: 0;
+      /* updated by JS */
+      --sr-size: 320px;
+      /* width of the floating object */
+      --sr-perspective: 900px;
+      /* 3-D depth feel */
+    }
+
+    body {
+      height: 300vh;
+    }
+
+    .sr-anchor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      perspective: var(--sr-perspective);
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    /* The object that spins */
+    .sr-object {
+      position: absolute;
+      transform-origin: center center;
+      width: var(--sr-size);
+      transform: translate(-50%, -50%);
+
+      /* Scroll-driven animation trick:
+     animation is paused, delay is negative scroll progress.
+     So 0% of scroll = start of keyframe, 100% = end. */
+      animation: sr-spin 1s linear both paused;
+      animation-delay: calc(var(--sr-scroll) * -1s);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+    }
+
+    @keyframes sr-spin {
+      0% {
+        transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+      }
+
+      20% {
+        transform: translate(-50%, -50%) rotateX(100deg) rotateY(60deg) rotateZ(18deg) translateY(-40px);
+      }
+
+      40% {
+        transform: translate(-50%, -50%) rotateX(200deg) rotateY(130deg) rotateZ(40deg) translateY(20px);
+      }
+
+      60% {
+        transform: translate(-50%, -50%) rotateX(300deg) rotateY(200deg) rotateZ(70deg) translateY(-25px);
+      }
+
+      80% {
+        transform: translate(-50%, -50%) rotateX(440deg) rotateY(290deg) rotateZ(110deg) translateY(15px);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotateX(580deg) rotateY(360deg) rotateZ(160deg) translateY(0px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- ════════════════════════════════════════════════════
+     ░░░ SCROLL-ROTATOR HTML ░░░
+     Drop this block anywhere in your <body>.
+     Replace the <svg> inside .sr-object with any image
+     or SVG you want to float and spin.
+     ════════════════════════════════════════════════════ -->
+  <div class="sr-anchor">
+    <!-- Glow halo (optional, remove if not needed) -->
+    <div class="sr-glow"></div>
+
+    <!-- The rotating object — swap this SVG for anything -->
+    <div class="sr-object">
+
+      <!--
+      SWAP THIS SVG ↓ with your own image:
+      <img src="your-product.png" style="width:100%;filter:drop-shadow(...)">
+      or any inline SVG you like.
+    -->
+    <img src="3dicons-rocket-dynamic-color.png"
+
+    </div>
+  </div>
+  <!-- ════════ END SCROLL-ROTATOR HTML ════════ -->
+  <!-- ════════════════════════════════════════════
+     ░░░ SCROLL-ROTATOR JS ░░░
+     Paste this once anywhere in your page.
+     ════════════════════════════════════════════ -->
+  <script>
+    // ── Scroll → CSS variable ──────────────────────────────
+    // This is the only JS needed for the rotation to work.
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const maxScroll = document.body.offsetHeight - window.innerHeight;
+      const progress = scrolled / maxScroll;          // 0 at top, 1 at bottom
+      document.body.style.setProperty('--sr-scroll', progress);
+    }, { passive: true });
+    // ── END SCROLL-ROTATOR JS ─────────────────────────────
+
+    // ── Demo extras (not part of the component) ──────────
+
+    // Fade-in sections as they enter viewport
+    const faders = document.querySelectorAll('.fade-up');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 90);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    faders.forEach(el => io.observe(el));
+
+    // Code panel toggle
+    function toggleCode() {
+      const body = document.getElementById('codePanelBody');
+      const hint = document.getElementById('codeHint');
+      body.classList.toggle('open');
+      hint.textContent = body.classList.contains('open') ? 'click to collapse ↓' : 'click to expand ↑';
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --beige: rgba(245 245 220/ 0.65);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #111110;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Poppins", sans-serif;
+            color: var(--beige);
+        }
+
+        .copy-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+
+            cursor: pointer;
+            transition: background-color 1s ease;
+        }
+
+        .copy-title-container {
+            height: 1.3rem;
+            overflow: hidden;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .title-container span {
+            transition: transform 0.5s ease;
+        }
+
+        .copy-container:hover #title {
+            transform: translate(0, -100%);
+        }
+
+        .copy-container:hover #title-hover {
+            transform: translate(0, -100%);
+        }
+
+        .copy-container.copied #title {
+            transform: translate(0, -200%);
+        }
+
+        .copy-container.copied #title-hover {
+            transform: translate(0, -200%);
+        }
+
+        .copy-container.copied #title-copied {
+            transform: translate(0, -200%);
+        }
+
+        .copy-email-container {
+            padding: 1rem 1.5rem;
+            border: 1px dashed var(--beige);
+            border-radius: 0.75em;
+            background-color: rgba(0 0 0 / 0.1);
+        }
+
+        .copy-container:hover .copy-email-container {
+            background-color: rgba(0 0 0 / 0.35);
+        }
+
+        #email {
+            font-family: "Cinzel", serif;
+            color: var(--beige);
+            font-weight: 900;
+            font-size: 5vmin;
+            transition: all 0.75s ease;
+            box-shadow: 0;
+        }
+
+        .copy-container:hover #email {
+            color: rgba(245 245 220/ 1);
+            text-shadow: 0 0 12px rgba(245 245 220/ 0.25), 0 0 6px rgba(245 245 220/ 0.5);
+        }
+
+        .inspired-by {
+            color: currentColor;
+            text-align: right;
+            position: absolute;
+            bottom: 2vmin;
+            right: 2vmin;
+        }
+
+        .inspired-by a {
+            color: whitesmoke;
+            text-shadow: 0px 0px 0px var(--beige);
+            transition: text-shadow 0.5s ease;
+        }
+
+        .inspired-by a:hover {
+            text-shadow: 0 0 6px var(--beige);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="copy-container">
+        <div class="copy-title-container">
+            <div class="title-container">
+                <span id="title">GET IN TOUCH</span>
+                <span id="title-hover">CLICK TO COPY 📝</span>
+                <span id="title-copied">COPIED ✨</span>
+            </div>
+        </div>
+        <div class="copy-email-container">
+            <span id="email">mohd.yahyatarique@gmail.com</span>
+        </div>
+    </div>
+
+    <div class="inspired-by">
+        Inspired by
+        <a href="https://www.giuligartner.com/" target="_blank" rel="noopener noreferrer"><span>Giulia's</span></a>
+        Footer.
+        <small><br><a href="https://www.awwwards.com/" target="_blank"
+                rel="noopener noreferrer"><span>Awwwards</span></a> Site Of The Day.</small>
+    </div>
+</body>
+
+<script>
+    const copyElem = document.querySelector(".copy-container");
+    const emailElem = document.getElementById("email");
+
+    copyElem.addEventListener("click", () => {
+        const textSelect = document.createElement("textarea");
+        textSelect.innerText = emailElem.innerText;
+        textSelect.style.position = "absolute";
+        textSelect.style.opacity = "0";
+        copyElem.append(textSelect);
+        document.execCommand("copy", false, textSelect.select());
+        copyElem.removeChild(textSelect);
+        copyElem.classList.add("copied");
+
+        setTimeout(() => {
+            copyElem.classList.remove("copied");
+        }, 2000);
+    });
+
+</script>
+
+</html>

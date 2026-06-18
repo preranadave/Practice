@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/fontawesome.min.css" integrity="sha512-M5Kq4YVQrjg5c2wsZSn27Dkfm/2ALfxmun0vUE3mPiJyK53hQBHYCVAtvMYEC7ZXmYLg8DVG4tF8gD27WmDbsg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .media-control{
+            display: flex;
+        }
+        .media-card {
+            background: #E2ECFF;
+            border-radius: 20px 0 0 20px;
+            width: 280px;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            mask-image: linear-gradient(to right, #000 50%, #00000054 80%, #000000b5 85%,transparent 100%);
+        }
+
+        .media-img {
+            width: 200px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0 20px 20px 0;
+            margin-left: -50px;
+            z-index: 0;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="media-control">
+        <div class="media-card">
+            <div class="media-info">
+                <div class="media-title">Song Title</div>
+                <div class="media-artist">Artist Name</div>
+            </div>
+            <div class="media-controls">
+                <button title="Previous"><i class="fa-solid fa-backward"></i></button>
+                <button title="Play"><i class="fa-solid fa-play"></i></button>
+                <button title="Next"><i class="fa-solid fa-forward"></i></button>
+            </div>
+        </div>
+        <img class="media-img" src="mask-bg.png" alt="Portrait" />
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,700');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 40px;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .slider {
+            height: 60px;
+            /* height of one text item */
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        .slide-track {
+            display: flex;
+            flex-direction: column;
+            animation: slide 6s infinite;
+        }
+
+        .text {
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            background: rgba(0, 132, 255, 0.63);
+            color: white;
+            padding: 0 20px;
+            border-radius: 12px;
+            margin-top: 5px;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateY(0);
+            }
+
+            33% {
+                transform: translateY(-70px);
+            }
+
+            66% {
+                transform: translateY(-130px);
+            }
+
+            100% {
+                transform: translateY(-200px);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="slider-wrapper">
+            I can write
+            <div class="slider">
+                <div class="slide-track">
+                    <div class="text">HTML</div>
+                    <div class="text">CSS</div>
+                    <div class="text">JavaScript</div>
+                    <div class="text">HTML</div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

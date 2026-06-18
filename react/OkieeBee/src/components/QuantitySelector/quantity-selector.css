@@ -1,0 +1,28 @@
+.qty-wrapper {
+    display: inline-flex;
+    align-items: center;justify-content: space-between;
+    border: 1px solid #D7D7D7;
+    overflow: hidden;
+    max-width: 172px;
+    border-radius: 50px;
+}
+
+.qty-btn {
+    width: 49px;
+    height: 50px;
+    border: none;
+    background: #EBEBEB;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.qty-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.qty-value {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}

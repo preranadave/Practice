@@ -1,0 +1,133 @@
+.offerings-section {
+    padding: 61px 0 91px;
+
+}
+
+.offerings-section__heading h2 {
+
+    font-size: 54px;
+    text-align: center;
+    color: #3A250A;
+    line-height: 1.6;
+}
+
+.offerings-section__heading p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.offering-section__list .dietary-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.offering-section__list {
+    margin-top: 44px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dietary-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dietary-box__img img {
+    position: relative;
+    z-index: 1;
+}
+
+.dietary-box__img {
+    width: 107px;
+    height: 117px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+
+}
+
+/*  clip-path: polygon(50% 0%,
+            93% 25%,
+            93% 75%,
+            50% 100%,
+            7% 75%,
+            7% 25%);
+ */
+
+.dietary-box__img::before {
+    content: "";
+    position: absolute;
+    background: url('data:image/svg+xml,<svg width="108" height="118" viewBox="0 0 108 118" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M53.6011 5.62012L102.093 32.2906V85.6315L53.6011 112.302L5.10938 85.6315V32.2906L53.6011 5.62012Z" fill="%238BC51E"/><path d="M106.702 29.7764V88.1455L53.6006 117.352L0.5 88.1455V29.7764L53.6006 0.570312L106.702 29.7764Z" stroke="%23C6E293"/></svg>');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    transition: all 0.3s ease-in-out;
+    background-repeat: no-repeat;
+
+}
+
+.dietary-box:hover .dietary-box__img::before {
+    background: url('data:image/svg+xml,<svg width="108" height="118" viewBox="0 0 108 118" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M53.6011 5.62012L102.093 32.2906V85.6315L53.6011 112.302L5.10938 85.6315V32.2906L53.6011 5.62012Z" fill="%23FFD302"/><path d="M106.702 29.7764V88.1455L53.6006 117.352L0.5 88.1455V29.7764L53.6006 0.570312L106.702 29.7764Z" stroke="%23FFE982"/></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dietary-box__content h4 {
+    font-size: 22px;
+}
+
+@media (max-width:991px) {
+    .offerings-section {
+        padding: 60px 0px;
+    }
+
+    .offering-section__list {
+        flex-wrap: wrap;
+        row-gap: 30px;
+    }
+
+    .offering-section__list .dietary-box {
+        width: 33.33%;
+    }
+
+    .offerings-section__heading h2 {
+        font-size: 45px;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width:768px) {
+    .offerings-section__heading p {
+        font-size: 18px;
+    }
+
+    .offerings-section__heading h2 {
+        font-size: 40px;
+    }
+
+
+    .dietary-box__content h4 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width:480px) {
+    .dietary-box__content h4 {
+        font-size: 16px;
+    }
+
+    .offering-section__list .dietary-box {
+        width: 50%;
+    }
+
+    .offerings-section__heading h2 {
+        font-size: 38px;
+    }
+}
